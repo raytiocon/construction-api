@@ -1,5 +1,5 @@
 name: Refresh Feed
-run-name: ${{ github.run_number }}
+run-name: ${{ steps.date.outputs.date }}
 on:
   push:
     branches:
