@@ -6,13 +6,15 @@ jobs:
     steps:
       - name: Fetch 服務項目
         uses: JamesIves/fetch-api-data-action@v2
-        save-name: service
         with:
+          save-location: /
+          save-name: service
           endpoint: https://api.sheety.co/2a18c672cb69669e6ecd1382f108ad17/網頁資訊/服務項目
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
       - name: Fetch 工程實績
         uses: JamesIves/fetch-api-data-action@v2
-        save-name: achievements
         with:
+          save-location: /
+          save-name: achievements
           endpoint: https://api.sheety.co/2a18c672cb69669e6ecd1382f108ad17/網頁資訊/工程實績
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
