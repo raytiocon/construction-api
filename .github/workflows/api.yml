@@ -1,7 +1,9 @@
 name: Refresh Feed
+run-name: ${{ github.run_number }}
 on:
-  schedule:
-    - cron: '* * * * *'
+  push:
+    branches:
+      - master
 jobs:
   refresh-feed:
     runs-on: ubuntu-latest
