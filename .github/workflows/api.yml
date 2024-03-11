@@ -1,6 +1,8 @@
 name: Refresh Feed
-run-name: ${{ steps.date.outputs.date }}
+run-name: ${{ github.run_number }}
 on:
+  schedule:
+    - cron: '0 */6 * * *' # At minute 0 past every 6th hour
   push:
     branches:
       - master
