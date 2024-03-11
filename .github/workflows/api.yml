@@ -27,4 +27,4 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: main # Pushes the updates to the main branch.
           FOLDER: fetch-api-data-action # The location of the data.json file saved by the Fetch API Data action.
-          TARGET_FOLDER: src/data # Saves the data into the 'data' directory on the master branch.
+          TARGET_FOLDER: .
