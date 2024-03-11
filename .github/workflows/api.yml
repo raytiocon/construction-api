@@ -1,5 +1,8 @@
 name: Refresh Feed
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
   refresh-feed:
     runs-on: ubuntu-latest
@@ -7,14 +10,21 @@ jobs:
       - name: Fetch 服務項目
         uses: JamesIves/fetch-api-data-action@v2
         with:
-          save-location: .
           save-name: service
           endpoint: https://api.sheety.co/2a18c672cb69669e6ecd1382f108ad17/網頁資訊/服務項目
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
+
       - name: Fetch 工程實績
         uses: JamesIves/fetch-api-data-action@v2
         with:
-          save-location: .
           save-name: achievements
           endpoint: https://api.sheety.co/2a18c672cb69669e6ecd1382f108ad17/網頁資訊/工程實績
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
+
+      - name: Build and Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: main # Pushes the updates to the main branch.
+          FOLDER: fetch-api-data-action # The location of the data.json file saved by the Fetch API Data action.
+          TARGET_FOLDER: src/data # Saves the data into the 'data' directory on the master branch.
